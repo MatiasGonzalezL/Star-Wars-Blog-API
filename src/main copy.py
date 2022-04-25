@@ -151,104 +151,48 @@ def user_favs():
         return jsonify(response_body), 500
 
 
-#agrega un personaje favorito (LISTOOOOOOOOOOOOOOOOOOO)
-@app.route('/favorite/character', methods=['POST'])
-def add_character_fav():
+#agrega un personaje favorito
+@app.route('/favorite/people/<int:people_id>', methods=['POST'])
+def add_people_fav():
 
-    try:
-        id_user = int(request.args.get('id_user'))
-        id_character = int(request.args.get('id_character'))
-        fav = FavoritesCharacters(
-            id_character=id_character,
-            id_user=id_user
-        )
-        db.session.add(fav)
-        db.session.commit()
-        response_body = {
-            "msg": "Personaje agregado a favoritos"
-        }
-        return jsonify(response_body),200
+    response_body = {
+        "msg":"Hello, this is your POST /addpeoplefav response"
+    }
 
-    except:
-        response_body = {
-            "msg":"Hubo un error en agregar el personaje a favoritos"
-        }
-        return jsonify(response_body), 500
+    return jsonify(response_body), 200
 
 
-#agrega un planeta favorito (LISTOOOOOOOOOOOOOOOOOO)
-@app.route('/favorite/planet', methods=['POST'])
+#agrega un planeta favorito
+@app.route('/favorite/planet/<int:planet_id>', methods=['POST'])
 def add_planet_fav():
 
-    try:
-        id_user = int(request.args.get('id_user'))
-        id_planet = int(request.args.get('id_planet'))
-        fav = FavoritesPlanets(
-            id_planet=id_planet,
-            id_user=id_user
-        )
-        db.session.add(fav)
-        db.session.commit()
-        response_body = {
-            "msg": "Planeta agregado a favoritos"
-        }
-        return jsonify(response_body), 200
+    response_body = {
+        "msg":"Hello, this is your POST /addplanetfav response"
+    }
 
-    except:
-        response_body = {
-            "msg": "Hubo un error en agregar el planeta a favoritos"
-        }
-        return jsonify(response_body), 500
+    return jsonify(response_body), 200
 
 
-#borrar personaje favorito ( LISTOOOOOOOOOOOOOOOOOOOOOOO)
-@app.route('/favorite/character', methods=['DELETE'])
-def delete_fav_character():
+#borrar personaje favorito
+@app.route('/favorite/people/<int:people_id>', methods=['DELETE'])
+def delete_fav_people():
 
-    try:
-        id_user = int(request.args.get('id_user'))
-        id_character = int(request.args.get('id_character'))
-        fav = FavoritesCharacters(
-            id_character=id_character,
-            id_user=id_user
-        )
-        db.session.delete(fav)
-        db.session.commit()
-        response_body = {
-            "msg": "Personaje eliminado con éxito"
-        }
-        return jsonify(response_body), 200
+    response_body = {
+        "msg": "Hello, this is your DELETE /deletefavpeople response"
+    }
 
-    except:
-        response_body = {
-            "msg": "Hubo un error eliminando el personaje de favoritos"
-        }
-        return jsonify(response_body), 500
+    return jsonify(response_body), 200
 
 
-#borrar planeta favorito (LISTOOOOOOOOOOOOOOOOOOOOOOOO)
-@app.route('/favorite/planet', methods=['DELETE'])
+#borrar planeta favorito
+@app.route('/favorite/planet/<int:planet_id>', methods=['DELETE'])
 def delete_fav_planet():
 
-    try:
-        id_user = int(request.args.get('id_user'))
-        id_planet = int(request.args.get('id_planet'))
-        fav = FavoritesPlanets(
-            id_planet=id_planet,
-            id_user=id_user
-        )
-        db.session.delete(fav)
-        db.session.commit()
-        response_body = {
-            "msg": "Planeta eliminado con éxito"
-        }
-        return jsonify(response_body), 200
+    response_body = {
+        "msg": "Hello, this is your DELETE /deletefavplanet response"
+    }
 
-    except:
-        response_body = {
-            "msg": "Hubo un error eliminando el planeta de favoritos"
-        }
-        return jsonify(response_body), 500
+    return jsonify(response_body), 200
 
 
 #Aquí terminan los endpoints de la tarea
