@@ -117,7 +117,7 @@ class Planet(db.Model):
             "terrain": self.terrain,
             "population": self.population,
             "surface_water": self.surface_water,
-            "gravity": gravity
+            "gravity": self.gravity
         }
 
 

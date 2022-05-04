@@ -83,11 +83,8 @@ def handle_planets():
 
     try:
         planets = Planet.query.all()
-        lista_planetas = []
-        for planetitas in planets:
-            lista_planetas.append(planetitas.serialize())
-            #planets = list(map(lambda x: x.serialize(), planets))
-        return jsonify(lista_planetas), 200
+        planets = list(map(lambda x: x.serialize(), planets))
+        return jsonify(planets), 200
 
     except:
         response_body = {
