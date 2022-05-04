@@ -59,30 +59,35 @@ def people():
 
 
 #get people específica (LISTOOOOOOOOOOOOOOOOOOOOOOOO)
-@app.route('/character/<int:character_id>', methods=['GET'])
-def single_character():
+@app.route('/character/<int:id_character>', methods=['GET'])
+def single_character(id_character):
 
     try:
-        id_character = int(request.args.get('id_character'))
-        one_character = Character.query.filter_by(id=id_character)
-        one_character = list(map(lambda x: x.serialize(), one_character))
-        return jsonify(one_character), 200
+        #id_character = int(request.args.get('id_character'))
+        #one_character = Character.query.filter_by(id=id_character)
+        #one_character = list(map(lambda x: x.serialize(), one_character))
+        #return jsonify(one_character), 200
+        characters = Character.query.filter_by(id=id_character)[0]
+        return jsonify(characters.serialize()), 200
 
     except:
         response_body = {
-            "msg": "Hubo un error en traer un personaje en específico"
+            "msg": "Hubo un error en traer un personaje en especifico"
         }
         return jsonify(response_body), 500
 
 
 #get planets (LISTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO)
-@app.route('/planetas', methods=['GET'])
-def planetas():
+@app.route('/planets', methods=['GET'])
+def handle_planets():
 
     try:
         planets = Planet.query.all()
-        planets = list(map(lambda x: x.serialize(), planets))
-        return jsonify(planets), 200
+        lista_planetas = []
+        for planetitas in planets:
+            lista_planetas.append(planetitas.serialize())
+            #planets = list(map(lambda x: x.serialize(), planets))
+        return jsonify(lista_planetas), 200
 
     except:
         response_body = {
@@ -92,18 +97,20 @@ def planetas():
 
 
 #get planets específico (LISTOOOOOOOOOOOOOOOOOOOO)
-@app.route('/planets/<int:planet_id>', methods=['GET'])
-def single_planet():
+@app.route('/planets/<int:id_planet>', methods=['GET'])
+def single_planet(id_planet):
 
     try:
-        id_planet = int(request.args.get('id_planet'))
-        one_planet = Planet.query.filter_by(id=id_planet)
-        one_planet = list(map(lambda x: x.serialize(), one_planet))
-        return jsonify(one_planet), 200
+        #id_planet = int(request.args.get('id_planet'))
+        #one_planet = Planet.query.filter_by(id=id_planet)
+        #one_planet = list(map(lambda x: x.serialize(), one_planet))
+        #return jsonify(one_planet), 200
+        planets = Planet.query.filter_by(id=id_planet)[0]
+        return jsonify(planets.serialize()), 200
 
     except:
         response_body = {
-            "msg": "Hubo un error trayendo un planeta en específico"
+            "msg": "Hubo un error trayendo un planeta en especifico"
         }
         return jsonify(response_body), 500
 

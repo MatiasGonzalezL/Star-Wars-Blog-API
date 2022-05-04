@@ -72,7 +72,7 @@ class Character(db.Model):
         }
 
 
-#Planetas
+#Planets
 class Planet(db.Model):
     __tablename__ = 'planet'
     id = db.Column(db.Integer, primary_key = True)
@@ -132,7 +132,7 @@ class FavoritesCharacters(db.Model):
         self.id_character = id_character
 
     def __repr__(self):
-        return '<FavoriteCharacter %r>' % self.id_character
+        return '<FavoritesCharacter %r>' % self.id_character
 
     def serialize(self):
         return {
@@ -151,7 +151,7 @@ class FavoritesPlanets(db.Model):
         self.id_planet = id_planet
 
     def __repr__(self):
-        return '<FavoritePlanet %r>' % self.id_planet
+        return '<FavoritesPlanet %r>' % self.id_planet
 
     def serialize(self):
         return {
