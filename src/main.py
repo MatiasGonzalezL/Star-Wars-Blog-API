@@ -76,11 +76,11 @@ def single_character():
 
 
 #get planets (LISTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO)
-@app.route('/planets', methods=['GET'])
-def planets():
+@app.route('/planetas', methods=['GET'])
+def planetas():
 
     try:
-        planetas = Planet.query.all()
+        planets = Planet.query.all()
         planets = list(map(lambda x: x.serialize(), planets))
         return jsonify(planets), 200
 
